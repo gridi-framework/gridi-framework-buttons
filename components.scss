@@ -1,0 +1,35 @@
+button, .button {
+    cursor: pointer;
+    display: inline-block;
+    overflow: visible;
+    margin: 0;
+    border: 0;
+    background: $button-background;
+    outline: 0;
+    padding: $button-padding;
+    line-height: $document-line-height;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    color: $button-color;
+    @include transition(all 0.2s linear);
+
+    &:hover, &:focus {
+        background: $button-hover-background;
+        color: $button-hover-color;
+    }
+}
+
+button {
+    font: inherit;
+    text-transform: none;
+    @include appearance(none);
+
+    &[disabled] {
+        cursor: default;
+    }
+}
+
+a.button:after {
+    display: none;
+}

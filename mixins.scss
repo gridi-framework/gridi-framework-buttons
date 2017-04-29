@@ -1,0 +1,19 @@
+@mixin button-colors($background, $color, $hover-background: null, $hover-color: null) {
+    @if not $hover-background {
+        $hover-background: $background;
+    }
+
+    @if not $hover-color {
+        $hover-color: $color;
+    }
+
+    button, .button {
+        background: $background;
+        color: $color;
+
+        &:hover, &:focus {
+            background: $hover-background;
+            color: $hover-color;
+        }
+    }
+}
