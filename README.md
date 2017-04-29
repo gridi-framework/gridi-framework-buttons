@@ -1,7 +1,7 @@
 # Gridi Framework Buttons
 
 ## Install
-`brew install gridi-framework-buttons`
+`bower install gridi-framework-buttons`
 
 ## Licence
 
