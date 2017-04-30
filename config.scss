@@ -1,8 +1,8 @@
-$button-background: $primary-color;
-$button-padding-vertical: 0.85em;
-$button-padding-horizontal: 1em;
-$button-padding: $button-padding-vertical $button-padding-horizontal;
-$button-color: $primary-color-background-text-color;
+$button-background: $primary-color !default;
+$button-padding-vertical: 0.85em !default;
+$button-padding-horizontal: 1em !default;
+$button-padding: $button-padding-vertical $button-padding-horizontal !default;
+$button-color: $primary-color-background-text-color !default;
 
-$button-hover-background: $hover-primary-color;
-$button-hover-color: $hover-primary-color-background-text-color;
+$button-hover-background: $hover-primary-color !default;
+$button-hover-color: $hover-primary-color-background-text-color !default;
