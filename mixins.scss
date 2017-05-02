@@ -17,13 +17,13 @@
 }
 
 @mixin buttons-colors($background, $color, $hover-background: null, $hover-color: null) {
-    @include button-style() {
+    @include buttons-style() {
         @include include-buttons-colors($background, $color, $hover-background, $hover-color);
     }
 }
 
 @mixin class-buttons-colors($class, $background, $color, $hover-background: null, $hover-color: null) {
-    @include class-button-style($class) {
+    @include class-buttons-style($class) {
         @include include-buttons-colors($background, $color, $hover-background, $hover-color);
     }
 }
