@@ -1,4 +1,4 @@
-button, .button {
+@include button-style() {
     cursor: pointer;
     display: inline-block;
     overflow: visible;
@@ -12,20 +12,10 @@ button, .button {
     text-decoration: none;
     letter-spacing: 0.04em;
     color: $button-color;
-    @include transition(all 0.2s linear);
+    @include transition($button-transition);
 
     &:hover, &:focus {
         background: $button-hover-background;
         color: $button-hover-color;
-    }
-}
-
-button {
-    font: inherit;
-    text-transform: none;
-    @include appearance(none);
-
-    &[disabled] {
-        cursor: default;
     }
 }

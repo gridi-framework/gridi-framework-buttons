@@ -1,8 +1,6 @@
 $button-background: $primary-color !default;
-$button-padding-vertical: 0.85em !default;
-$button-padding-horizontal: 1em !default;
-$button-padding: $button-padding-vertical $button-padding-horizontal !default;
 $button-color: $primary-color-background-inner-color !default;
+$button-transition: $elements-transition;
 
 $button-hover-background: $hover-primary-color !default;
 $button-hover-color: $hover-primary-color-background-inner-color !default;
