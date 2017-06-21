@@ -1,3 +1,25 @@
+@mixin buttons-style() {
+    .button,
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"] {
+        @content;
+    }
+}
+
+@mixin class-buttons-style($class) {
+    .button,
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"] {
+        &.#{$class} {
+            @content;
+        }
+    }
+}
+
 @mixin include-buttons-colors($background, $color, $hover-background: null, $hover-color: null) {
     @if not $hover-background {
         $hover-background: $background;

@@ -1,3 +1,57 @@
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    font: inherit;
+    text-transform: none;
+    color: inherit;
+    @include appearance(none);
+    @include box-shadow(none);
+
+    &::-moz-focus-inner {
+        margin: 0;
+        border: 0;
+        outline: none;
+        padding: 0;
+    }
+}
+
 @include buttons-style() {
-    @include  include-buttons-colors($button-background, $button-color, $button-hover-background, $button-hover-color);
+    cursor: pointer;
+    display: inline-block;
+    overflow: visible;
+    @include include-element-margin($button-margin-top, $button-margin-bottom, $button-margin-left, $button-margin-right, $button-margin-for-screens);
+    border: $button-border;
+    background: $button-background;
+    outline: 0;
+    padding: $button-padding;
+    line-height: $document-line-height;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: $button-letter-spacing;
+    color: $button-color;
+    -webkit-tap-highlight-color: transparent;
+    @include transition($button-transition);
+
+    &:hover, &:focus {
+        border-color: $button-hover-border-color;
+        background: $button-hover-background;
+        color: $button-hover-color;
+    }
+
+    &.clear {
+        border: 0 !important;
+        outline: 0 !important;
+        background: transparent !important;
+        color: inherit !important;
+    }
+
+    &.disabled,
+    &[disabled] {
+        cursor: default;
+        border: $button-border;
+        background: $button-background;
+        color: $button-color;
+        @include opacity($button-disabled-opacity);
+    }
 }
