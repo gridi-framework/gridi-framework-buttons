@@ -46,7 +46,7 @@ input[type="submit"] {
         color: inherit !important;
     }
 
-    &.disabled,
+    &.btn-disabled,
     &[disabled] {
         cursor: default;
         border: $button-border;
