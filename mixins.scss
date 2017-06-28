@@ -20,32 +20,50 @@
     }
 }
 
-@mixin include-buttons-colors($background, $color, $hover-background: null, $hover-color: null) {
-    @if not $hover-background {
-        $hover-background: $background;
+@mixin include-buttons-colors($colors-map) {
+    @if map-has-key($colors-map, border-color) and map-get($colors-map, border-color) {
+        border-color: map-get($colors-map, border-color);
     }
-
-    @if not $hover-color {
-        $hover-color: $color;
+    @if map-has-key($colors-map, background) and map-get($colors-map, background) {
+        background: map-get($colors-map, background);
     }
-
-    background: $background;
-    color: $color;
+    @if map-has-key($colors-map, color) and map-get($colors-map, color) {
+        color: map-get($colors-map, color);
+    }
 
     &:hover, &:focus {
-        background: $hover-background;
-        color: $hover-color;
+        @if map-has-key($colors-map, hover-border-color) and map-get($colors-map, hover-border-color) {
+            border-color: map-get($colors-map, hover-border-color);
+        }
+        @if map-has-key($colors-map, hover-background) and map-get($colors-map, hover-background) {
+            background: map-get($colors-map, hover-background);
+        }
+        @if map-has-key($colors-map, hover-color) and map-get($colors-map, hover-color) {
+            color: map-get($colors-map, hover-color);
+        }
+    }
+
+    &[disabled], &.#{$button-class}-disabled {
+        @if map-has-key($colors-map, border-color) and map-get($colors-map, border-color) {
+            border-color: map-get($colors-map, border-color);
+        }
+        @if map-has-key($colors-map, background) and map-get($colors-map, background) {
+            background: map-get($colors-map, background);
+        }
+        @if map-has-key($colors-map, color) and map-get($colors-map, color) {
+            color: map-get($colors-map, color);
+        }
     }
 }
 
-@mixin buttons-colors($background, $color, $hover-background: null, $hover-color: null) {
+@mixin buttons-colors($colors-map) {
     @include buttons-style() {
-        @include include-buttons-colors($background, $color, $hover-background, $hover-color);
+        @include include-buttons-colors($colors-map);
     }
 }
 
-@mixin class-buttons-colors($class, $background, $color, $hover-background: null, $hover-color: null) {
+@mixin class-buttons-colors($class, $colors-map) {
     @include class-buttons-style($class) {
-        @include include-buttons-colors($background, $color, $hover-background, $hover-color);
+        @include include-buttons-colors($colors-map);
     }
 }
