@@ -39,7 +39,7 @@ input[type="submit"] {
         color: $button-hover-color;
     }
 
-    &.clear {
+    &.#{$button-class}-clear {
         border: 0 !important;
         outline: 0 !important;
         background: transparent !important;
