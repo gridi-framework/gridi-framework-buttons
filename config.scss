@@ -15,6 +15,7 @@ $button-margin-for-screens: () !default;
     ...
 ) !default;*/
 $button-border: 1px solid $primary-color !default;
+$button-border-radius: 0 !default;
 $button-hover-border-color: $hover-primary-color !default;
 $button-background: $primary-color !default;
 $button-hover-background: $hover-primary-color !default;
