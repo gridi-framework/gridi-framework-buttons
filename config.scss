@@ -1,30 +1,114 @@
 $button-class: 'btn' !default;
+$button-cursor: pointer !default;
+$button-display: inline-block !default;
+$button-overflow: visible !default;
+
+//Margin
 $button-margin-top: 0 !default;
 $button-margin-bottom: 0 !default;
 $button-margin-left: 0 !default;
 $button-margin-right: 0 !default;
-//Defined margins for each screens.
 $button-margin-for-screens: () !default;
-/*$button-margin-for-screens: (
-    s1: (
-        top: 20px, //Not required. Define only the margins values you want to change. Example - s2: ( top: 20px ) - change only top margin for screens greater than s2
-        bottom: 20px,
-        left: 20px,
-        right: 20px,
-    ),
-    ...
-) !default;*/
-$button-border: 1px solid $primary-color !default;
-$button-border-radius: 0 !default;
-$button-hover-border-color: $hover-primary-color !default;
-$button-background: $primary-color !default;
-$button-hover-background: $hover-primary-color !default;
-$button-padding-vertical: 0.65em !default;
-$button-padding-horizontal: 1em !default;
-$button-padding: $button-padding-vertical $button-padding-horizontal !default;
-$button-letter-spacing: 0.04em !default;
-$button-color: $primary-color-background-inner-color !default;
-$button-hover-color: $hover-primary-color-background-inner-color !default;
-$button-transition: 'border-color #{$elements-transition-duration} #{$elements-transition-function}, background #{$elements-transition-duration} #{$elements-transition-function}, color #{$elements-transition-duration} #{$elements-transition-function}' !default;
 
+//Outline
+$button-outline-width: 0 !default;
+$button-outline-style: null !default;
+$button-outline-color: null !default;
+
+//Borders
+$button-border-width: 1px !default;
+$button-border-style: solid !default;
+$button-border-color: $primary-color !default;
+$button-borders: () !default;
+
+//Background
+$button-background-image: null !default;
+$button-background-position: null !default;
+$button-background-repeat: null !default;
+$button-background-color: $primary-color !default;
+$button-background-attachment: null !default;
+
+//Paddings
+$button-padding-top: 0.65em !default;
+$button-padding-bottom: 0.65em !default;
+$button-padding-left: 1rem !default;
+$button-padding-right: 1rem !default;
+
+//Color
+$button-color: $primary-color-background-inner-color !default;
+
+//Border radius
+$button-border-radius: 0 !default;
+
+//Transition
+$button-transition-property: (border-color, background, color) !default;
+$button-transition-duration: $elements-transition-duration !default;
+$button-transition-timing-function: $elements-transition-function !default;
+$button-transition-delay: null !default;
+
+//Font
+$button-line-height: $document-line-height !default;
+$button-text-align: center !default;
+$button-text-decoration: none !default;
+$button-letter-spacing: 0.04em !default;
+
+//Webkit tap highlight
+$button-webkit-tap-highlight-color: transparent !default;
+
+//Extra style
+//@mixin button-extra-style() {} //Create this mixin before import module when you want add some special style for element
+
+//Hover Focus
+//Extra style
+//@mixin button-hover-focus-extra-style() {} //Create this mixin before import module when you want add some special style for element
+
+//Hover
+//Borders
+$button-hover-border-width: null !default;
+$button-hover-border-style: null !default;
+$button-hover-border-color: $hover-primary-color !default;
+$button-hover-borders: () !default;
+$button-hover-border-make-shorthand: false !default;
+
+//Background
+$button-hover-background-image: null !default;
+$button-hover-background-position: null !default;
+$button-hover-background-repeat: null !default;
+$button-hover-background-color: $hover-primary-color !default;
+$button-hover-background-attachment: null !default;
+$button-hover-background-make-shorthand: false !default;
+
+//Color
+$button-hover-color: $hover-primary-color-background-inner-color !default;
+
+//Extra style
+//@mixin button-hover-extra-style() {} //Create this mixin before import module when you want add some special style for element
+
+//Focus
+//Borders
+$button-focus-border-width: null !default;
+$button-focus-border-style: null !default;
+$button-focus-border-color: $hover-primary-color !default;
+$button-focus-borders: () !default;
+$button-focus-border-make-shorthand: false !default;
+
+//Background
+$button-focus-background-image: null !default;
+$button-focus-background-position: null !default;
+$button-focus-background-repeat: null !default;
+$button-focus-background-color: $hover-primary-color !default;
+$button-focus-background-attachment: null !default;
+$button-focus-background-make-shorthand: false !default;
+
+//Color
+$button-focus-color: $hover-primary-color-background-inner-color !default;
+
+//Extra style
+//@mixin button-focus-extra-style() {} //Create this mixin before import module when you want add some special style for element
+
+//Disabled
+$button-disabled-cursor: default !default;
 $button-disabled-opacity: 0.3 !default;
+
+//Extra style
+//@mixin button-disabled-extra-style() {} //Create this mixin before import module when you want add some special style for element

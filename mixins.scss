@@ -20,50 +20,89 @@
     }
 }
 
-@mixin include-buttons-colors($colors-map) {
-    @if map-has-key($colors-map, border-color) and map-get($colors-map, border-color) {
-        border-color: map-get($colors-map, border-color);
-    }
-    @if map-has-key($colors-map, background) and map-get($colors-map, background) {
-        background: map-get($colors-map, background);
-    }
-    @if map-has-key($colors-map, color) and map-get($colors-map, color) {
-        color: map-get($colors-map, color);
+//@mixin buttons-extra-colors-propertys($colors-map) {} //Create this mixin before import module when you want add some special colors style for element
+//@mixin buttons-hover-focus-extra-colors-propertys($colors-map) {} //Create this mixin before import module when you want add some special colors style for element
+//@mixin buttons-hover-extra-colors-propertys($colors-map) {} //Create this mixin before import module when you want add some special colors style for element
+//@mixin buttons-focus-extra-colors-propertys($colors-map) {} //Create this mixin before import module when you want add some special colors style for element
+//@mixin buttons-disabled-extra-colors-propertys($colors-map) {} //Create this mixin before import module when you want add some special colors style for element
+
+@mixin buttons-colors-propertys($colors-map) {
+    @include property-from-map($colors-map, outline-color);
+    @include property-from-map($colors-map, border-color);
+    @include property-from-map($colors-map, background-color);
+    @include property-from-map($colors-map, color);
+    @if mixin-exists(buttons-extra-colors-propertys) {
+        @include buttons-extra-colors-propertys($colors-map);
     }
 
+    $hover-border-color: map-get($colors-map, hover-border-color);
+    $hover-background-color: map-get($colors-map, hover-background-color);
+    $hover-color: map-get($colors-map, hover-color);
+
+    $focus-border-color: map-get($colors-map, focus-border-color);
+    $focus-background-color: map-get($colors-map, focus-background-color);
+    $focus-color: map-get($colors-map, focus-color);
+
     &:hover, &:focus {
-        @if map-has-key($colors-map, hover-border-color) and map-get($colors-map, hover-border-color) {
-            border-color: map-get($colors-map, hover-border-color);
+        @if $hover-border-color == $focus-border-color {
+            @include not-required-property(border-color, $hover-border-color);
         }
-        @if map-has-key($colors-map, hover-background) and map-get($colors-map, hover-background) {
-            background: map-get($colors-map, hover-background);
+        @if $hover-background-color == $focus-background-color {
+            @include not-required-property(background-color, $hover-background-color);
         }
-        @if map-has-key($colors-map, hover-color) and map-get($colors-map, hover-color) {
-            color: map-get($colors-map, hover-color);
+        @if $hover-color == $focus-color {
+            @include not-required-property(color, $hover-color);
+        }
+        @if mixin-exists(buttons-hover-focus-extra-colors-propertys) {
+            @include  buttons-hover-focus-extra-colors-propertys($colors-map);
+        }
+    }
+
+    &:hover {
+        @if $hover-border-color != $focus-border-color {
+            @include not-required-property(border-color, $hover-border-color);
+        }
+        @if $hover-background-color != $focus-background-color {
+            @include not-required-property(background-color, $hover-background-color);
+        }
+        @if $hover-color != $focus-color {
+            @include not-required-property(color, $hover-color);
+        }
+        @if mixin-exists(buttons-hover-extra-colors-propertys) {
+            @include  buttons-hover-extra-colors-propertys($colors-map);
+        }
+    }
+
+    &:focus {
+        @if $hover-border-color != $focus-border-color {
+            @include not-required-property(border-color, $focus-border-color);
+        }
+        @if $hover-background-color != $focus-background-color {
+            @include not-required-property(background-color, $focus-background-color);
+        }
+        @if $hover-color != $focus-color {
+            @include not-required-property(color, $focus-color);
+        }
+        @if mixin-exists(buttons-focus-extra-colors-propertys) {
+            @include  buttons-focus-extra-colors-propertys($colors-map);
         }
     }
 
     &[disabled], &.#{$button-class}-disabled {
-        @if map-has-key($colors-map, border-color) and map-get($colors-map, border-color) {
-            border-color: map-get($colors-map, border-color);
-        }
-        @if map-has-key($colors-map, background) and map-get($colors-map, background) {
-            background: map-get($colors-map, background);
-        }
-        @if map-has-key($colors-map, color) and map-get($colors-map, color) {
-            color: map-get($colors-map, color);
+        @if mixin-exists(buttons-disabled-extra-colors-propertys) {
+            @include buttons-disabled-extra-colors-propertys($colors-map);
         }
     }
 }
 
 @mixin buttons-colors($colors-map) {
     @include buttons-style() {
-        @include include-buttons-colors($colors-map);
+        @include buttons-colors-propertys($colors-map);
     }
 }
 
 @mixin class-buttons-colors($class, $colors-map) {
     @include class-buttons-style($class) {
-        @include include-buttons-colors($colors-map);
+        @include buttons-colors-propertys($colors-map);
     }
 }

@@ -8,51 +8,216 @@ input[type="submit"] {
     @include appearance(none);
     @include box-shadow(none);
 
-    &::-moz-focus-inner {
+    &::-moz-focus-inner,
+    &::-moz-focus-outer {
         margin: 0;
+        outline: 0;
         border: 0;
-        outline: none;
         padding: 0;
     }
 }
 
 @include buttons-style() {
-    cursor: pointer;
-    display: inline-block;
-    overflow: visible;
-    @include include-element-margin($button-margin-top, $button-margin-bottom, $button-margin-left, $button-margin-right, $button-margin-for-screens);
-    border: $button-border;
-    background: $button-background;
-    outline: 0;
-    padding: $button-padding;
-    line-height: $document-line-height;
-    text-align: center;
-    text-decoration: none;
+    cursor: $button-cursor;
+    display: $button-display;
+    overflow: $button-overflow;
+    @include margin-shorthand-with-screens-support((
+        top: $button-margin-top,
+        bottom: $button-margin-bottom,
+        left: $button-margin-left,
+        right: $button-margin-right
+    ), $button-margin-for-screens);
+    @include outline-shorthand((
+        width: $button-outline-width,
+        style: $button-outline-style,
+        color: $button-outline-color,
+        make-shorthand: true
+    ));
+    @include border-shorthand(map-merge((
+        border: (
+            width: $button-border-width,
+            style: $button-border-style,
+            color: $button-border-color,
+            make-shorthand: true
+        )
+    ), $button-borders));
+    @include background-shorthand((
+        image: $button-background-image,
+        position: $button-background-position,
+        repeat: $button-background-repeat,
+        color: $button-background-color,
+        attachment: $button-background-attachment,
+        make-shorthand: true
+    ));
+    @include padding-shorthand((
+        top: $button-padding-top,
+        bottom: $button-padding-bottom,
+        left: $button-padding-left,
+        right: $button-padding-right
+    ));
+    line-height: $button-line-height;
+    text-align: $button-text-align;
+    text-decoration: $button-text-decoration;
     letter-spacing: $button-letter-spacing;
     color: $button-color;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: $button-webkit-tap-highlight-color;
     @include border-radius($button-border-radius);
-    @include transition($button-transition);
+    @include transition-shorthand((
+        property: $button-transition-property,
+        duration: $button-transition-duration,
+        timing-function: $button-transition-timing-function,
+        delay: $button-transition-delay,
+        make-shorthand: true
+    ));
+    @if mixin-exists(button-extra-style) {
+        @include button-extra-style();
+    }
 
     &:hover, &:focus {
-        border-color: $button-hover-border-color;
-        background: $button-hover-background;
-        color: $button-hover-color;
+        @if (
+            $button-hover-border-width == $button-focus-border-width and
+            $button-hover-border-style == $button-focus-border-style and
+            $button-hover-border-color == $button-focus-border-color and
+            $button-hover-border-make-shorthand == $button-focus-border-make-shorthand
+        ) {
+            @include border-shorthand((
+                border: (
+                    width: $button-hover-border-width,
+                    style: $button-hover-border-style,
+                    color: $button-hover-border-color,
+                    make-shorthand: $button-hover-border-make-shorthand
+                )
+            ));
+        }
+        @if $button-hover-borders == $button-focus-borders {
+            @include border-shorthand($button-hover-borders);
+        }
+        @if (
+            $button-hover-background-image == $button-focus-background-image and
+            $button-hover-background-position == $button-focus-background-position and
+            $button-hover-background-repeat == $button-focus-background-repeat and
+            $button-hover-background-color == $button-focus-background-color and
+            $button-hover-background-attachment == $button-focus-background-attachment and
+            $button-hover-background-make-shorthand == $button-focus-background-make-shorthand
+        ) {
+            @include background-shorthand((
+                image: $button-hover-background-image,
+                position: $button-hover-background-position,
+                repeat: $button-hover-background-repeat,
+                color: $button-hover-background-color,
+                attachment: $button-hover-background-attachment,
+                make-shorthand: $button-hover-background-make-shorthand
+            ));
+        }
+        @if $button-hover-color == $button-focus-color {
+            color: $button-hover-color;
+        }
+        @if mixin-exists(button-hover-focus-extra-style) {
+            @include button-hover-focus-extra-style();
+        }
+    }
+
+    &:hover {
+        @if (
+            $button-hover-border-width != $button-focus-border-width or
+            $button-hover-border-style != $button-focus-border-style or
+            $button-hover-border-color != $button-focus-border-color or
+            $button-hover-border-make-shorthand != $button-focus-border-make-shorthand
+        ) {
+            @include border-shorthand((
+                border: (
+                    width: $button-hover-border-width,
+                    style: $button-hover-border-style,
+                    color: $button-hover-border-color,
+                    make-shorthand: $button-hover-border-make-shorthand
+                )
+            ));
+        }
+        @if $button-hover-borders != $button-focus-borders {
+            @include border-shorthand($button-hover-borders);
+        }
+        @if (
+            $button-hover-background-image != $button-focus-background-image or
+            $button-hover-background-position != $button-focus-background-position or
+            $button-hover-background-repeat != $button-focus-background-repeat or
+            $button-hover-background-color != $button-focus-background-color or
+            $button-hover-background-attachment != $button-focus-background-attachment or
+            $button-hover-background-make-shorthand != $button-focus-background-make-shorthand
+        ) {
+            @include background-shorthand((
+                image: $button-hover-background-image,
+                position: $button-hover-background-position,
+                repeat: $button-hover-background-repeat,
+                color: $button-hover-background-color,
+                attachment: $button-hover-background-attachment,
+                make-shorthand: $button-hover-background-make-shorthand
+            ));
+        }
+        @if $button-hover-color != $button-focus-color {
+            color: $button-hover-color;
+        }
+        @if mixin-exists(button-hover-extra-style) {
+            @include button-hover-extra-style();
+        }
+    }
+
+    &:focus {
+        @if (
+            $button-hover-border-width != $button-focus-border-width or
+            $button-hover-border-style != $button-focus-border-style or
+            $button-hover-border-color != $button-focus-border-color or
+            $button-hover-border-make-shorthand != $button-focus-border-make-shorthand
+        ) {
+            @include border-shorthand((
+                border: (
+                    width: $button-focus-border-width,
+                    style: $button-focus-border-style,
+                    color: $button-focus-border-color,
+                    make-shorthand: $button-focus-border-make-shorthand
+                )
+            ));
+        }
+        @if $button-hover-borders != $button-focus-borders {
+            @include border-shorthand($button-focus-borders);
+        }
+        @if (
+            $button-hover-background-image != $button-focus-background-image or
+            $button-hover-background-position != $button-focus-background-position or
+            $button-hover-background-repeat != $button-focus-background-repeat or
+            $button-hover-background-color != $button-focus-background-color or
+            $button-hover-background-attachment != $button-focus-background-attachment or
+            $button-hover-background-make-shorthand != $button-focus-background-make-shorthand
+        ) {
+            @include background-shorthand((
+                image: $button-focus-background-image,
+                position: $button-focus-background-position,
+                repeat: $button-focus-background-repeat,
+                color: $button-focus-background-color,
+                attachment: $button-focus-background-attachment,
+                make-shorthand: $button-focus-background-make-shorthand
+            ));
+        }
+        @if $button-hover-color != $button-focus-color {
+            color: $button-focus-color;
+        }
+        @if mixin-exists(button-focus-extra-style) {
+            @include button-focus-extra-style();
+        }
     }
 
     &.#{$button-class}-clear {
-        border: 0 !important;
         outline: 0 !important;
+        border: 0 !important;
         background: transparent !important;
         color: inherit !important;
     }
 
     &.#{$button-class}-disabled,
     &[disabled] {
-        cursor: default;
-        border: $button-border;
-        background: $button-background;
-        color: $button-color;
+        cursor: $button-disabled-cursor;
         @include opacity($button-disabled-opacity);
+        @if mixin-exists(button-disabled-extra-style) {
+            @include button-disabled-extra-style();
+        }
     }
 }
